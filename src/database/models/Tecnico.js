@@ -9,7 +9,6 @@ Tecnico.init({
         type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true,
-
     },
     nombre:{
         type:DataTypes.STRING,

@@ -7,10 +7,10 @@ const Muestra=require("./models/Muestra")
 Tecnico.hasMany(Casette)
 Casette.belongsTo(Tecnico)
 
-// 1 Casette tiene M Cortes
+// 1 Casette tiene M Muestras
 Casette.hasMany(Muestra)
 Muestra.belongsTo(Casette)
 
-// 1 Corte obtiene M Muestras
+// 1 Muesta tiene M imagenes
 Muestra.hasMany(Imagen)
 Imagen.belongsTo(Muestra)

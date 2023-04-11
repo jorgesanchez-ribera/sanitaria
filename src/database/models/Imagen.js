@@ -1,32 +1,33 @@
-const sequelize=require("../db")
+const sequelize = require("../db");
 
-const {Model, DataTypes} = require ("sequelize")
+const { Model, DataTypes } = require("sequelize");
 
-class Imagen extends Model{}
+class Imagen extends Model {}
 
-Imagen.init({
-    id_imagen:{
-        type:DataTypes.INTEGER,
-        primaryKey:true,
-        autoIncrement:true,
-
+Imagen.init(
+  {
+    id_imagen: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    fecha:{
-        type:DataTypes.DATE,
-        allowNull:false
+    fecha: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
     },
-    observaciones:{
-        type:DataTypes.STRING,
+    observaciones: {
+      type: DataTypes.STRING,
     },
-    qr_imagen:{
-        type:DataTypes.STRING,
-        allowNull:false
+    qr_imagen: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    
-},{
+  },
+  {
     sequelize,
-    modelName:"imagen",
-    timestamps:false,
-})
+    modelName: "imagen",
+    timestamps: false,
+  }
+);
 
-module.exports=Imagen
+module.exports = Imagen;

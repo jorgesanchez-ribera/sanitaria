@@ -15,11 +15,11 @@ Casette.init({
         allowNull: false
     },
     caracteristicas: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('medium'),
         allowNull: false
     },
     observaciones: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('medium'),
     },
     imagen: {
         type: DataTypes.BLOB,
