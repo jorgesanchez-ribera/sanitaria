@@ -57,9 +57,9 @@ const login = async (req) => {
   if (user) {
     const isCorrectPass = bcrypt.compareSync(req.password, user.password);
     if (isCorrectPass) {
-      return { token: createToken(user) };
+      return { token: createToken(user), user };
     } else {
-      return { error: "Usuario o contraseña incorrectos" };
+      return { error: "Usuario o contraseña incorrectos", };
     }
   } else {
     return { error: "Usuario o contraseña incorrectos" };

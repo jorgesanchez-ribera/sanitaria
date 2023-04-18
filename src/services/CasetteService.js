@@ -10,29 +10,17 @@ const getUnCasette = async (casetteId) => {
 };
 
 const getAllCasettes = async () => {
-  const casettes = await Casette.findAll({
-    order: [["fecha", "ASC"]],
-    limit: 20,
-  });
+  const casettes = await Casette.findAll();
   return casettes;
 };
 
-/* const getCasettesIndex = async () => {
-  const [cassettes, metadata] = await sequalize.query(
-    `SELECT * FROM cassettes WHERE fecha BETWEEN CAST('${date1}' AS DATE) AND CAST('${date2}' AS DATE) ORDER BY fecha DESC LIMIT 20;`
-  );
-  return cassettes;
-}; */
-
 const crearCasetteService = async (post) => {
-  console.log(post);
+  console.log("El cassette ha sido creado service");
   const cassette = await Casette.create(post);
   return cassette.id_casette;
 };
 
 const putCassetteService = async (cassette, id) => {
-  console.log(cassette);
-  console.log(id);
   const updatecassette = await Casette.update(
     {
       fecha: cassette.fecha,
@@ -56,7 +44,6 @@ const buscarPorOrgano = async (organo) => {
 };
 
 const buscarPorFecha = async (fecha) => {
-  console.log("Servicio");
   const casettes = await Casette.findAll({ where: { fecha: fecha } });
   return casettes;
 };
@@ -75,13 +62,13 @@ const buscarPorFechaRango = async (fechainicio, fechafin) => {
   return cassettes;
 };
 
-const getOnlyOrganos = async () => {
+/* const getOnlyOrganos = async () => {
   const organos = await Casette.findAll({
     attributes: ["organo"],
     group: "organo",
   });
   return organos;
-};
+}; */
 
 module.exports = {
   getUnCasette,
@@ -90,6 +77,6 @@ module.exports = {
   buscarPorOrgano,
   buscarPorFecha,
   buscarPorFechaRango,
-  getOnlyOrganos,
+/*   getOnlyOrganos, */
   putCassetteService,
 };

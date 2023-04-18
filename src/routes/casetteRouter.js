@@ -26,11 +26,11 @@ casetteRouter.get("/:id", Controller.getUnCasette);
 casetteRouter.put(  "/:id",Controller.putCassette);
 
 casetteRouter.delete("/:id", async (req, res) => {
-  const muestra = await Muestra.destroy({
+   await Muestra.destroy({
     where: { casetteIDCasette: parseInt(req.params.id) },
     force: true,
   });
-  const cassette = await Casette.destroy({
+  await Casette.destroy({
     where: { id_casette: parseInt(req.params.id) },
     force: true,
   });

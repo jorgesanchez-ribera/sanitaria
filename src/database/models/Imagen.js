@@ -18,9 +18,8 @@ Imagen.init(
     observaciones: {
       type: DataTypes.STRING,
     },
-    qr_imagen: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    imagen: {
+      type: DataTypes.BLOB,
     },
   },
   {

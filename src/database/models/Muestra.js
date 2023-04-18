@@ -12,7 +12,7 @@ Muestra.init(
       autoIncrement: true,
     },
     fecha: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     observaciones: {

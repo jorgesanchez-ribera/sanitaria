@@ -3,10 +3,8 @@ const moment = require("moment");
 
 const checkToken = (req, res, next) => {
   const userToken = req.headers["token"];
-  console.log(userToken)
   let payload = {};
   if (!userToken) {
-    // console.log("No hay token")
     return res.json({ error: "Falta Token" });
   }
   try {

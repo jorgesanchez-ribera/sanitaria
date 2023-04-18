@@ -21,6 +21,7 @@ const getUnCasette = async (req, res) => {
 };
 
 const crearCasette = async (req, res) => {
+  console.log("llega al controlador ")
   const casette = await Services.crearCasetteService(req.body);
   res.json(casette);
 };
