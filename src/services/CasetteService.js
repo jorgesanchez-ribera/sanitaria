@@ -1,11 +1,18 @@
 const Casette = require("../database/models/Casette");
 const Sequelize = require("sequelize");
+const generator = require("generate-password");
 const Op = Sequelize.Op;
 
 const getUnCasette = async (casetteId) => {
-  const casette = await Casette.findOne({
+  let casette = await Casette.findOne({
     where: { id_casette: `${casetteId}` },
   });
+  console.log(casette.imagen);
+
+  //  casette={  ...casette, imagen:casette.imagen.toString('base64')};
+  casette.imagen = casette.imagen.toString("base64");
+  console.log(casette.imagen);
+  console.log(casette);
   return casette;
 };
 
@@ -15,7 +22,15 @@ const getAllCasettes = async () => {
 };
 
 const crearCasetteService = async (post) => {
-  console.log("El cassette ha sido creado service");
+  let qr = generator.generate({
+    length: 10,
+    numbers: true,
+    uupercase: false,
+    lowercase: false,
+    strict: false,
+  });
+  // Añadimos el codigo qr generado aleatoriamente
+  post = { ...post, qr_casette: "cassette_" + qr };
   const cassette = await Casette.create(post);
   return cassette.id_casette;
 };
@@ -23,6 +38,7 @@ const crearCasetteService = async (post) => {
 const putCassetteService = async (cassette, id) => {
   const updatecassette = await Casette.update(
     {
+      descripcion: cassette.descripcion,
       fecha: cassette.fecha,
       caracteristicas: cassette.caracteristicas,
       observaciones: cassette.observaciones,
@@ -55,9 +71,7 @@ const buscarPorFechaRango = async (fechainicio, fechafin) => {
         [Op.between]: [fechainicio, fechafin],
       },
     },
-    order: [
-      ['fecha', 'DESC'],
-  ],
+    order: [["fecha", "DESC"]],
   });
   return cassettes;
 };
@@ -77,6 +91,6 @@ module.exports = {
   buscarPorOrgano,
   buscarPorFecha,
   buscarPorFechaRango,
-/*   getOnlyOrganos, */
+  /*   getOnlyOrganos, */
   putCassetteService,
 };

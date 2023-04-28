@@ -13,7 +13,7 @@ const getAllMuestras = async () => {
 };
 
 const createMuestra = async (body) => {
-  const muestra = Muestra.create(body);
+  const muestra = await Muestra.create(body);
   return muestra;
 };
 
