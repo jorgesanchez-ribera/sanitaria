@@ -1,4 +1,5 @@
 const Muestra = require("../database/models/Muestra");
+const multer = require("multer");
 
 const getUnMuestra = async (muestraId) => {
   const muestra = await Muestra.findOne({
@@ -12,9 +13,16 @@ const getAllMuestras = async () => {
   return muestras;
 };
 
-const createMuestra = async (body) => {
-  const muestra = await Muestra.create(body);
-  return muestra;
+const storage = multer.memoryStorage();
+
+upload = multer({ storage });
+const createMuestra = async (muestra) => {
+  muestra = { ...muestra, qr_casette: "muestra_" + Date.now() };
+  muestra = { ...muestra, imagen: req.file.buffer };
+  console.log(muestra)
+  const nuevamuestra = await Muestra.create(muestra);
+  
+  return nuevamuestra;
 };
 
 module.exports = { getUnMuestra, getAllMuestras, createMuestra };

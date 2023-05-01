@@ -7,12 +7,11 @@ const getUnCasette = async (casetteId) => {
   let casette = await Casette.findOne({
     where: { id_casette: `${casetteId}` },
   });
-  console.log(casette.imagen);
-
-  //  casette={  ...casette, imagen:casette.imagen.toString('base64')};
-  casette.imagen = casette.imagen.toString("base64");
-  console.log(casette.imagen);
-  console.log(casette);
+  
+  // Si no ha elegino la imagen
+  casette.imagen
+    ? (casette.imagen = casette.imagen.toString("base64"))
+    : (casette.imagen = null);
   return casette;
 };
 

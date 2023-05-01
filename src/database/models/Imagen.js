@@ -11,13 +11,13 @@ Imagen.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    fecha: {
+ /*    fecha: {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
     observaciones: {
       type: DataTypes.STRING,
-    },
+    }, */
     imagen: {
       type: DataTypes.BLOB,
     },

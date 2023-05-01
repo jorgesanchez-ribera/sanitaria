@@ -8,7 +8,7 @@ const muestrarouter = require("./muestraRouter");
 
 // Uso de las distintas rutas
 apirouter.use("/tecnicos", tecnicorouter);
-apirouter.use("/cassettes",   /*  middlewares.checkToken, */   casetterouter);
+apirouter.use("/cassettes",/*  middlewares.checkToken, */ casetterouter);
 apirouter.use("/muestras", middlewares.checkToken, muestrarouter);
 
 module.exports = apirouter;

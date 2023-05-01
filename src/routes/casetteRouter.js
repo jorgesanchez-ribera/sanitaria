@@ -5,12 +5,12 @@ const Muestra = require("../database/models/Muestra");
 
 // Subir imagenes en memoria, para guardar en la
 const multer = require("multer");
-/*  const upload = multer({
+ const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
     fileSize: 10 * 1024 * 1024, // límite de tamaño de archivo de 10 MB
   },
-});  */
+}); 
 
 // Configurar Multer para manejar la carga de archivos en disco
 /* const storage = multer.diskStorage({
@@ -23,22 +23,17 @@ const multer = require("multer");
 }); */
 
 // Configurar multer para menejar la carga en memoria
-const storage = multer.memoryStorage();
+/* const storage = multer.memoryStorage();
+upload = multer({ storage }); */
 
-upload = multer({ storage });
-
-casetteRouter.post("/",upload.single("imagen"), async (req, res) => {
+casetteRouter.post("/", upload.single("imagen"), async (req, res) => {
   let post = req.body;
-  let file= req.file;
-   console.log( file)
 
- 
-   console.log("llega")
-  
-  
   post = { ...post, qr_casette: "cassette_" + Date.now() };
-  post = { ...post, imagen: req.file.buffer };
-  console.log(post)
+  // Si no ha seleccionado imagen
+  req.file
+    ? (post = { ...post, imagen: req.file.buffer })
+    : (post = { ...post, imagen: null });
   const cassette = await Casette.create(post);
   return cassette.id_casette;
 });
